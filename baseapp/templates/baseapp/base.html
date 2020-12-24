@@ -19,15 +19,21 @@
   <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">      
   <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">     
   <!-- Custom styles -->
-  <link href="{% static 'style.css' %" type="text/css" rel="stylesheet">
+  <link href="{% static 'style.css' %}" type="text/css" rel="stylesheet">
 </head>
 <body class="lines">
  
  {% block header %}
  {% endblock %}
 
- {% block body %}
- {% endblock %}
+<header class="hero-wrapper">
+    <div class="hero">
+      
+    </div>
+    {% block body %}
+    {% endblock %}
+</header>
+ 
 
  {% block footer %}
  {% endblock %}
