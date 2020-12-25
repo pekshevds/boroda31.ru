@@ -29,7 +29,8 @@ class GoodAdmin(admin.ModelAdmin):
         'is_new',
         'is_hot',
         'is_service',
-        'is_show',        
+        'is_show',
+        'price',
     )
 
     inlines = [PictureInline,]

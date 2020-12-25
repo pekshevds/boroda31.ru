@@ -2,6 +2,93 @@
 {% load static %}
 
 {% block body %}
+<main>
+	<div class="container pt-5 pb-3">
 
-<h6>list</h6>
- {% endblock %}
+		<div class="row shoptitle-wrapper">
+			<div data-josh-anim-name="fadeInLeft" class="josh-js col-sm-6">
+				<h2 class="shoptitle">{{ category.name }}</h2>
+			</div>
+			<div class="col-sm-6">
+				<select id="price-sort2" class="form-control">                    
+					<option data-sorttype="as" value="price">По цене возр.</option>
+					<option data-sorttype="de" value="price">По цене убыв.</option>					
+				</select>
+			</div>
+		</div>
+		<div class="row grid2 products custom-gutters1 mt-1">
+			
+
+			{% for item in items %}
+
+			<div class="element-item col-md-4 col-sm-6 col-12 mb-1half text-center">         
+				<div class="product featured-product">
+					<div data-josh-anim-name="fadeIn" class="josh-js image-wrapper">
+						<a href="{% url 'show_item' slug=item.slug %}">
+							{% if item.discount != 0 %}<h6 class="label">-{{ item.discount }}%</h6>{% endif %}
+							<img class="p-image" src="{% static 'images/product1b.png' %}" alt="#">
+						</a>
+					</div>   
+					<h3 class="pricetitle1">{{ item.name }}</h3>
+
+					<h3 class="pricetitle">{{ item.price }}{% if item.old_price != 0 %}<span class="price">{{ item.old_price }}</span>{% endif %} </h3>
+					<button type="button" class="custom-button2a" data-toggle="modal" data-target="#exampleModal2">
+						Купить<span></span>
+					</button> 
+					<!-- modal popup --> 
+					<div class="modal custom-modal fade bd-example-modal-lg" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<img src="{% static 'images/close2.png' %}" alt="close"/>
+									</button>
+								</div>
+								<div class="modal-body">
+									<h3 class="modaltitle">В КОРЗИНУ</h3>                   
+									<div class="col-lg-12 text-left p-0">
+										<table class="table table-responsive-md">
+											<tbody>
+												<tr>
+													<td>
+														<div class="row product1 align-items-center">
+															<div class="col-3">
+																<img src="{% static 'images/product-image.png' %}" alt="..."/>
+															</div>
+															<div class="col-9 pl-1">
+																<h4>{{ item.name }}</h4>
+																<span class="gram">345g</span>
+															</div>
+														</div>
+													</td>
+													<td> 
+														<span class="cartprice">{{ item.price }}</span> 
+													</td>
+													<td class="text-right">
+														<button><img src="{% static 'images/close2.png' %}" alt="close"/></button>								
+													</td>
+												</tr>				  
+											</tbody>
+										</table>
+										<div class="row mt-1">
+											<div class="col mt-1half text-right">
+												<a href="{% url 'show_cart' %}" class="custom-button1 mr-0 mb-1">КОРЗИНА</a>		
+												<a href="#" class="custom-button3 ml-4">ПРОДОЛЖИТЬ</a>  
+											</div>
+										</div>
+									</div>
+								</div>       
+							</div>
+						</div>
+					</div> 
+				</div>
+			</div>
+			{% endfor %}
+			
+		</div> 
+	</div>  
+	 
+
+</div>
+</main>
+{% endblock %}

@@ -4,100 +4,100 @@
 
 {% block header %}
 
-<div class="top-fixed">  
-  <div class="container smallscreen-wrapper1 pr0 pl1">
-    <div class="row overflows smallscreen-wrapper">
-      <div class="col-lg-2 col-12 text-center">
-        <a class="navbar-brand" href="{% url 'show_index' %}"><img src="{% static 'images/logo_light.png' %}" alt="Burgos"></a>
-      </div>   
-      <div class="col-lg-10 col-12 navbar-wrapper">
-        <nav class="navbar navbar-expand-lg">
-          <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#main_nav"
-          aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="animated-icon1"><span></span><span></span><span></span></span>
-        </button>   
-        <div class="collapse navbar-collapse" id="main_nav">
-          <ul class="navbar-nav">
-           <li class="nav-item">
-            <a class="nav-link" href="{% url 'show_index' %}"> Home </a>            
-          </li>
-          <li class="nav-item">
-           <a class="nav-link" href="{% url 'show_list' %}">Shop</a>           
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'show_index' %}">About</a>
-        </li>        
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'show_index' %}">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </nav>     
-  <!-- Card and shop icon --> 
-  <div class="smallscreen">
-    <div class="shop-icon navbar">
-      <div class="nav-item dropdown">
-        <a href="#" data-toggle="dropdown">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="totalnumberitems">3</span>
-          <span class="shop-icon-total">$39</span>
-        </a>               
-        <div class="dropdown-menu fade-down dropdown-menu-right">
-          <div class="card">
-            <div class="card-body">
-              <div class="row justify-content-center pb-1">
-                <div class="col-4">
-                  <img src="{% static 'images/1.png' %}" alt="...">
-                </div>
-                <div class="col-8">
-                  <h4 class="mb-0">Chicken Burger</h4> 
-                  <span>$12</span>
-                </div>
-              </div>
-              <div class="row justify-content-center pb-1">
-                <div class="col-4">
-                  <img src="{% static 'images/2.png' %}" alt="...">
-                </div>
-                <div class="col-8">
-                  <h4 class="mb-0">Beef Burger</h4>
-                  <span>$15</span>                     
-                </div>
-              </div>
-              <div class="row justify-content-center pb-2">
-                <div class="col-4">
-                  <img src="{% static 'images/3.png' %}" alt="...">
-                </div>
-                <div class="col-8">
-                  <h4 class="mb-0">Classic Burger</h4>
-                  <span>$12</span>                     
-                </div>
-              </div>
-              <div class="line"></div>
-              <div class="col-12 pb-1half pt-1">
-                <div class="row no-gutters">
-                  <div class="col-6">
-                    <h4>TOTAL</h4> 
+<div class="white-nav">  
+    <div class="container pl-0 pr-0">
+      <div class="row overflows smallscreen-wrapper">
+        <div class="col-lg-2 col-12 text-center">
+          <a class="navbar-brand" href="{% url 'show_index' %}"><img src="{% static 'images/logo.png' %}" alt="Burgos"></a>
+        </div>   
+        <div class="col-lg-10 col-12 navbar-wrapper">
+          <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#main_nav"
+            aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="animated-icon1"><span></span><span></span><span></span></span>
+            </button> 
+            <div class="collapse navbar-collapse" id="main_nav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'show_index' %}"> ДОМОЙ </a>                  
+                </li>
+                
+                {% for category in categoryes %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'show_list' slug=category.slug %}">{{ category.name }}</a>                  
+                </li>
+                {% endfor%}                
+                <li class="nav-item">
+                  <a class="nav-link" href="#">КОНТАКТЫ</a>
+                </li>
+              </ul>
+            </div>
+          </nav>     
+          <!-- Card and shop icon --> 
+          <div class="smallscreen">
+            <div class="shop-icon navbar">
+              <div class="nav-item dropdown">
+                <a href="#" data-toggle="dropdown">
+                  <i class="fas fa-shopping-cart"></i>
+                  <span class="totalnumberitems">3</span>
+                  <span class="shop-icon-total">$39</span>
+                </a>               
+                <div class="dropdown-menu fade-down dropdown-menu-right">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row justify-content-center pb-1">
+                        <div class="col-4">
+                          <img src="{% static 'images/1.png' %}" alt="...">
+                        </div>
+                        <div class="col-8">
+                          <h4 class="mb-0">Chicken Burger</h4> 
+                          <span>$12</span>
+                        </div>
+                      </div>
+                      <div class="row justify-content-center pb-1">
+                        <div class="col-4">
+                          <img src="{% static 'images/2.png' %}" alt="...">
+                        </div>
+                        <div class="col-8">
+                          <h4 class="mb-0">Beef Burger</h4>
+                          <span>$15</span>                     
+                        </div>
+                      </div>
+                      <div class="row justify-content-center pb-2">
+                        <div class="col-4">
+                          <img src="{% static 'images/3.png' %}" alt="...">
+                        </div>
+                        <div class="col-8">
+                          <h4 class="mb-0">Classic Burger</h4>
+                          <span>$12</span>                     
+                          </div>
+                      </div>
+                      <div class="line"></div>
+                      <div class="col-12 pb-1half pt-1">
+                        <div class="row no-gutters">
+                          <div class="col-6">
+                          <h4>TOTAL</h4> 
+                          </div>
+                          <div class="col-6 text-right">
+                            <h4><b>$39</b></h4> 
+                          </div>
+                        </div>  
+                      </div>
+                      <div class="line mb-1"></div>
+                      <div class="col-12 text-center">
+                        <a href="#" class="custom-button2">Checkout</a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-6 text-right">
-                    <h4><b>$39</b></h4> 
-                  </div>
-                </div>  
-              </div>
-              <div class="line mb-1"></div>
-              <div class="col-12 text-center">
-                <a href="#" class="custom-button2">Checkout</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> 
-</div> 
-<!-- row smallscreen wrapper --> 
-</div> 
-</div> 
+          </div> 
+        </div> 
+        <!-- row smallscreen wrapper --> 
+      </div> 
+    </div> 
 
 {% endblock %}
 

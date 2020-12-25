@@ -1,5 +1,28 @@
 from django.shortcuts import render
 
-def show_list(request):
+from boroda31.core import get_context
+
+from .core import get_category_by_slug
+from .core import get_good_by_slug
+from .core import get_category_goods
+from .core import get_recommendations
+
+
+def show_list(request, slug):
 		
-	return render(request, 'catalogapp/list.html', context={})
+	context=get_context(request)
+	context['category'] = get_category_by_slug(slug)
+	context['items'] = get_category_goods(context['category'])
+
+
+	return render(request, 'catalogapp/list.html', context)
+
+
+def show_item(request, slug):
+		
+	context=get_context(request)	
+	context['item'] = get_good_by_slug(slug)
+	context['recommendations'] = get_recommendations()
+
+
+	return render(request, 'catalogapp/item.html', context)

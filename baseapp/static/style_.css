@@ -136,7 +136,7 @@ h4,
 h5,
 h6 {
   color: #1B2A49;
-  font-family: "Podkova";
+  font-family: "Nunito Sans";
   font-weight: 600;
 }
 h1 {
@@ -258,7 +258,7 @@ blockquote.blockquote {
   padding: 48px 36px;
 }
 blockquote.blockquote p {
-  font-family: "Podkova";
+  font-family: "nunito sans";
   font-size: 20px;
   line-height: 28px;
   font-weight: 600;
@@ -268,7 +268,7 @@ blockquote.blockquote cite {
   font-size: 20px;
   color: #f37335;
   line-height: 28px;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   font-weight: 600;
   font-style: italic;
 }
@@ -480,7 +480,7 @@ Navbar
 .navbar-brand {
   color: #fff;
   font-weight: 800;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   font-size: 24px;
   line-height: 24px;
 }
@@ -495,7 +495,7 @@ Navbar
   .navbar-brand {
     color: #fff;
     font-weight: 800;
-    font-family: "Podkova";
+    font-family: "nunito sans";
     font-size: 24px;
     line-height: 24px;
   }
@@ -533,7 +533,7 @@ Navbar
   font-weight: 600;
   line-height: 24px;
   color: #fff;
-  font-family: "Podkova";
+  font-family: "nunito sans";
 }
 .navbar a.nav-link:link:hover,
 .navbar a.nav-link:visited:hover {
@@ -614,7 +614,7 @@ Navbar
 .navbar .navbar-nav .dropdown-menu a {
   padding: 0;
   background: transparent;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -731,7 +731,7 @@ Navbar
 .white-nav .navbar-brand {
   color: #443737;
   font-weight: 800;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   font-size: 24px;
   line-height: 24px;
 }
@@ -915,7 +915,7 @@ Dropdown shop icon
   padding-right: 10px;
 }
 .shop-icon span {
-  font-family: "Podkova";
+  font-family: "nunito sans";
 }
 @media all and (max-width: 992px) {
 .shop-icon {
@@ -1671,7 +1671,7 @@ Best products
 .best-product div.pricemain h5 {
   padding-right: 20px;
   margin-top: -5px;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   font-size: 60px;
   line-height: 72px;
   font-weight: 800;
@@ -2195,7 +2195,7 @@ Instagram
   text-transform: uppercase;
   font-size: 20px;
   color: #1B2A49;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   line-height: 2; 
 }
 .instagram-title span.fab {
@@ -2274,7 +2274,7 @@ a.custom-button1:visited {
   line-height: 18px;
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   background: #fbb731;
   color: #1e2f40;
   padding: 20px 50px;
@@ -2318,7 +2318,7 @@ a.custom-button2:visited {
   border: none;
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   background: #fbb731;
   color: #1e2f40;
   padding: 12px 30px 10px 30px;
@@ -2351,7 +2351,7 @@ a.custom-button2a:visited {
   border: none;
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   background: url("images/cart.svg") 22% 50% no-repeat;
   background-color: #fbb731; 
   color: #1e2f40;
@@ -2394,7 +2394,7 @@ a.custom-button3 {
   line-height: 18px;
   font-weight: 800;
   -webkit-font-smoothing: antialiased;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   background: #fff;
   color: #fbb731;
   padding: 20px 40px 18px 40px;
@@ -2418,23 +2418,23 @@ Custom button end
 Main title
 ----------------------------- */
 h2.maintitle {
-  font: 60px/126% "Podkova";
+  font: 60px/126% "nunito sans";
   font-weight: 700;
   text-transform: uppercase;
 }
 h2.maintitle.maintitle800 {
-  font: 60px/126% "Podkova";
+  font: 60px/126% "nunito sans";
   font-weight: 800;
   text-transform: uppercase;
 }
 @media all and (max-width: 767px) {
   h2.maintitle {
-    font: 50px/126% "Podkova";
+    font: 50px/126% "nunito sans";
     font-weight: 700;
     text-transform: uppercase;
   }
   h2.maintitle.maintitle800 {
-    font: 38px/126% "Podkova";
+    font: 38px/126% "nunito sans";
     font-weight: 800;
     text-transform: uppercase;
   }
@@ -2669,7 +2669,7 @@ Blog
 .blog-grid2 cite {
   font-size: 20px;
   line-height: 28px;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   font-weight: 600;
   color: #f37335;
 }
@@ -2734,7 +2734,7 @@ Blog
 }
 .sidebar .sidebar-categories li {
   margin-bottom: 6px;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
@@ -2789,7 +2789,7 @@ Blog
   float: left;
   border: 1px solid #979797;
   color: #979797;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   padding: 2px 6px;
   border-radius: 5px;
   margin-right: 15px;
@@ -2849,7 +2849,7 @@ Blog
   color: #1b2a49;
   margin-right: 35px;
   font-weight: 700;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   font-size: 14px;
   line-height: 18px;
 }
@@ -3489,7 +3489,7 @@ table.table .cartprice-wrapper {
 }
 table.table span.cartprice {
   display: inline-block;
-  font-family: Podkova;
+  font-family: Nunito Sans;
   font-size: 20px;
   font-weight: 700;
   line-height: 28px;
@@ -3497,7 +3497,7 @@ table.table span.cartprice {
 }
 table.table span.cartprice2 {
   display: inline-block;
-  font-family: "Podkova";
+  font-family: "Nunito Sans";
   font-size: 20px;
   font-weight: 700;
   line-height: 28px;
@@ -3812,7 +3812,7 @@ home 3
   max-width: 280px;
 }
 .full-screen2 .textbox span {
-  font-family: Podkova;
+  font-family: Nunito Sans;
   font-size: 20px;
   font-weight: 400;
   line-height: 20px;
@@ -3843,7 +3843,7 @@ home 3
   color: #fff;
   font-size: 40px;
   line-height: 48px;
-  font-family: "Podkova";
+  font-family: "nunito sans";
   font-weight: 400;
 }
 .main-menu a i {
