@@ -57,11 +57,11 @@ class Good(models.Model):
 
     category = models.ForeignKey('Category', verbose_name="Категория", on_delete=models.PROTECT, blank=True, null=True)
 
-    price = models.DecimalField(verbose_name='Цена', default=0, max_digits=15, decimal_places=2)
-    old_price = models.DecimalField(verbose_name='Старая цена', default=0, max_digits=15, decimal_places=2)
-    discount = models.DecimalField(verbose_name='Скидка, %', default=0, max_digits=15, decimal_places=2)
+    price = models.DecimalField(verbose_name='Цена', default=0, max_digits=15, decimal_places=2, blank=True)
+    old_price = models.DecimalField(verbose_name='Старая цена', default=0, max_digits=15, decimal_places=2, blank=True)
+    discount = models.DecimalField(verbose_name='Скидка, %', default=0, max_digits=15, decimal_places=2, blank=True)
 
-    quant = models.DecimalField(verbose_name='Количество', default=0, max_digits=15, decimal_places=3)
+    quant = models.DecimalField(verbose_name='Количество', default=0, max_digits=15, decimal_places=0)
 
     width = models.DecimalField(verbose_name='Ширина, см', default=0, max_digits=15, decimal_places=1)
     height = models.DecimalField(verbose_name='Высота, см', default=0, max_digits=15, decimal_places=1)

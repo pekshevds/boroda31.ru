@@ -17,7 +17,6 @@ def get_good_by_slug(slug):
     
     return Good.objects.get(slug=slug)
 
-
 def get_category_goods(category):
     try:
         goods = Good.objects.filter(category=category)

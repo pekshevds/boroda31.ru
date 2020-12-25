@@ -39,53 +39,43 @@
               <div class="nav-item dropdown">
                 <a href="#" data-toggle="dropdown">
                   <i class="fas fa-shopping-cart"></i>
-                  <span class="totalnumberitems">3</span>
-                  <span class="shop-icon-total">$39</span>
+                  <span class="totalnumberitems">{{ cart.cart_quant }}</span>
+                  <span class="shop-icon-total">{{ cart.cart_sum }}</span>
                 </a>               
                 <div class="dropdown-menu fade-down dropdown-menu-right">
                   <div class="card">
                     <div class="card-body">
+
+                      {% for item in cart.cart_items %}
+
                       <div class="row justify-content-center pb-1">
                         <div class="col-4">
                           <img src="{% static 'images/1.png' %}" alt="...">
                         </div>
                         <div class="col-8">
-                          <h4 class="mb-0">Chicken Burger</h4> 
-                          <span>$12</span>
+                          <h4 class="mb-0">{{ item.good.name }}</h4> 
+                          <span>{{ item.quant }}</span>
+                          <span>X</span>
+                          <span>{{ item.price }}</span>
+                          <span>=</span>
+                          <span>{{ item.sum }}</span>
                         </div>
                       </div>
-                      <div class="row justify-content-center pb-1">
-                        <div class="col-4">
-                          <img src="{% static 'images/2.png' %}" alt="...">
-                        </div>
-                        <div class="col-8">
-                          <h4 class="mb-0">Beef Burger</h4>
-                          <span>$15</span>                     
-                        </div>
-                      </div>
-                      <div class="row justify-content-center pb-2">
-                        <div class="col-4">
-                          <img src="{% static 'images/3.png' %}" alt="...">
-                        </div>
-                        <div class="col-8">
-                          <h4 class="mb-0">Classic Burger</h4>
-                          <span>$12</span>                     
-                          </div>
-                      </div>
+                      {% endfor %}
                       <div class="line"></div>
                       <div class="col-12 pb-1half pt-1">
                         <div class="row no-gutters">
                           <div class="col-6">
-                          <h4>TOTAL</h4> 
+                          <h4>К ОПЛАТЕ</h4> 
                           </div>
                           <div class="col-6 text-right">
-                            <h4><b>$39</b></h4> 
+                            <h4><b>{{ cart.cart_sum }}</b></h4> 
                           </div>
                         </div>  
                       </div>
                       <div class="line mb-1"></div>
                       <div class="col-12 text-center">
-                        <a href="#" class="custom-button2">Checkout</a>
+                        <a href="{% url 'show_cart' %}" class="custom-button2">КОРЗИНА</a>
                       </div>
                     </div>
                   </div>
