@@ -143,11 +143,16 @@ class Offer(models.Model):
         
         name = ""
 
-        name = add_name(name, self.additive1, str(self.quant1))
-        name = add_name(name, self.additive2, str(self.quant2))
-        name = add_name(name, self.additive3, str(self.quant3))
-        name = add_name(name, self.additive4, str(self.quant4))
-        name = add_name(name, self.additive5, str(self.quant5))  
+        if self.quant1 > 0:
+            name = add_name(name, self.additive1, str(self.quant1))
+        if self.quant2 > 0:
+            name = add_name(name, self.additive2, str(self.quant2))
+        if self.quant3 > 0:
+            name = add_name(name, self.additive3, str(self.quant3))
+        if self.quant4 > 0:
+            name = add_name(name, self.additive4, str(self.quant4))
+        if self.quant5 > 0:
+            name = add_name(name, self.additive5, str(self.quant5))  
         
         return "Добавки: " + name
 

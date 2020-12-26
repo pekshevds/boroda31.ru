@@ -6,7 +6,7 @@ import random
 
 def get_categoryes():
 
-	return Category.objects.all()
+	return Category.objects.filter(is_show=True)
 	
 
 def get_category_by_slug(slug):
