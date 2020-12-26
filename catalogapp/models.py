@@ -105,9 +105,9 @@ class Good(models.Model):
 def add_name(name, additive, postfix=""):
     if additive:
         if name != "":
-            name = name + "-" + (additive.name + "_" + postfix)
+            name = name + "; " + (additive.name + "-" + postfix)
         else:
-            name = name + (additive.name + "_" + postfix)
+            name = name + (additive.name + "-" + postfix)
 
     return name
 
@@ -121,35 +121,35 @@ def add_slug(slug, additive, postfix=""):
 
     return slug
 
+
 class Offer(models.Model):
     slug = models.SlugField(max_length=1600, verbose_name='Url', blank=True, db_index=True, unique=True)
 
     good = models.ForeignKey(Good, verbose_name='Номенклатура', related_name="offer_good", on_delete=models.PROTECT)
 
     additive1 = models.ForeignKey(Good, verbose_name="Добавка 1", related_name="offer_additive1", on_delete=models.PROTECT, blank=True, null=True)
-    quant1 = models.DecimalField(verbose_name='Количество 1', default=0, max_digits=15, decimal_places=0)
+    quant1 = models.DecimalField(verbose_name='Количество 1', default=0, max_digits=15, decimal_places=0, blank=True)
     additive2 = models.ForeignKey(Good, verbose_name="Добавка 2", related_name="offer_additive2", on_delete=models.PROTECT, blank=True, null=True)
-    quant2 = models.DecimalField(verbose_name='Количество 2', default=0, max_digits=15, decimal_places=0)
+    quant2 = models.DecimalField(verbose_name='Количество 2', default=0, max_digits=15, decimal_places=0, blank=True)
     additive3 = models.ForeignKey(Good, verbose_name="Добавка 3", related_name="offer_additive3", on_delete=models.PROTECT, blank=True, null=True)
-    quant3 = models.DecimalField(verbose_name='Количество 3', default=0, max_digits=15, decimal_places=0)
+    quant3 = models.DecimalField(verbose_name='Количество 3', default=0, max_digits=15, decimal_places=0, blank=True)
     additive4 = models.ForeignKey(Good, verbose_name="Добавка 4", related_name="offer_additive4", on_delete=models.PROTECT, blank=True, null=True)
-    quant4 = models.DecimalField(verbose_name='Количество 4', default=0, max_digits=15, decimal_places=0)
+    quant4 = models.DecimalField(verbose_name='Количество 4', default=0, max_digits=15, decimal_places=0, blank=True)
     additive5 = models.ForeignKey(Good, verbose_name="Добавка 5", related_name="offer_additive5", on_delete=models.PROTECT, blank=True, null=True)
-    quant5 = models.DecimalField(verbose_name='Количество 5', default=0, max_digits=15, decimal_places=0)
+    quant5 = models.DecimalField(verbose_name='Количество 5', default=0, max_digits=15, decimal_places=0, blank=True)
 
 
     def __str__(self):
         
         name = ""
 
-        name = add_name(name, self.good, str(1))
         name = add_name(name, self.additive1, str(self.quant1))
         name = add_name(name, self.additive2, str(self.quant2))
         name = add_name(name, self.additive3, str(self.quant3))
         name = add_name(name, self.additive4, str(self.quant4))
         name = add_name(name, self.additive5, str(self.quant5))  
         
-        return name
+        return "Добавки: " + name
 
 
     def save(self, *args, **kwargs):
@@ -168,7 +168,7 @@ class Offer(models.Model):
 
 
     def get_sum(self):
-        sum = 0
+        sum = self.good.price
 
         if self.additive1:
             sum = sum + (self.additive1.price * self.quant1)
@@ -186,6 +186,7 @@ class Offer(models.Model):
             sum = sum + (self.additive5.price * self.quant5)
 
         return sum
+
 
     class Meta:
 

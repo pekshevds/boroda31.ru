@@ -43,8 +43,8 @@
 									 <img src="{% static 'images/product-image.png' %}" alt="..."/>
 								</div>
 							  <div class="col-9 pl-1">
-									<h4>{{ item.good.name }}</h4>
-									<span class="gram">345g</span>
+									<h4>{{ item.offer.good.name }}</h4>
+                  <span class="gram">{{ item.offer }}</span>									
 							  </div>
 						  </div>
 					  </td>
@@ -52,7 +52,7 @@
               <span class="cartprice">{{ item.price }}</span> 
             </td>
 					  <td>								
-            <input type="hidden" name="item{{ forloop.counter }}" value="{{ item.good.slug }}">
+            <input type="hidden" name="item{{ forloop.counter }}" value="{{ item.offer.slug }}">
             <div class="counteritem">              
                 <a href="#" class="sc-minus">-</a>
                 <input type="text" name="quant{{ forloop.counter }}" value="{{ item.quant }}">
@@ -63,7 +63,7 @@
               <span class="cartprice2">{{ item.sum }}</span>
             </td>
 					  <td class="text-right">
-							<a href="{% url 'del_from_cart' slug=item.good.slug %}"><img src="{% static 'images/close2.png' %}" alt="close"/></a>
+							<a href="{% url 'del_from_cart' slug=item.offer.slug %}"><img src="{% static 'images/close2.png' %}" alt="close"/></a>
 						</td>
 				  </tr>				  
 				</tbody>
@@ -73,7 +73,7 @@
       <div class="row mb-2">
         <div class="col text-right">
           <a href="{% url 'clear_cart' %}" class="custom-button3 mr-4 mb-1">ОЧИСТИТЬ</a>		
-				  <button type="submit" class="custom-button1 ml-5">ПЕРЕСЧИТАТЬ</button>
+				  <button type="submit" class="custom-button1 ml-5">СОХРАНИТЬ</button>
           <!-- <a href="#" class="custom-button1 ml-5">ПЕРЕСЧИТАТЬ</a>   -->
 				</div>
       </div>
@@ -95,14 +95,14 @@
         <input type="text" class="form-control" placeholder="Номер телефона">        
         <div class="row">
           <div class="col-12 mt-1 mb-3 text-right">
-            <a href="#" class="custom-button2">Заказать</a>  
+            <button type="submit" class="custom-button1 ml-5">ЗАКАЗАТЬ</button>  
           </div>
         </div>
         <div class="row">
           <div class="col-sm-5">
           </div>
           <div class="cart-subtotal-inner col-sm-7">
-            <h5>К ОПЛАТЕ<span>{{ cart.cart_sum }}</span></h5>            
+            <h4>К ОПЛАТЕ<span>{{ cart.cart_sum }}</span></h4>            
           </div>
         </div> 
       </div>  

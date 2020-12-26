@@ -2,35 +2,35 @@ from .models import Cart
 from .models import CartItem
 
 
-from catalogapp.models import Good
-from catalogapp.core import get_good_by_slug
+from catalogapp.models import Offer
+from catalogapp.core import get_offer_by_slug
 
 
 from decimal import Decimal
 
 
-def add_to_cart(cart, good, quant=1):
+def add_to_cart(cart, offer, quant=1):
 
-	items = CartItem.objects.filter(cart=cart, good=good)
+	items = CartItem.objects.filter(cart=cart, offer=offer)
 	if items:
 
 		item = items[0]
 		item.quant = item.quant + quant
 		item.save()
 	else:
-		items = CartItem.objects.create(cart=cart, good=good, quant=quant)	
+		items = CartItem.objects.create(cart=cart, offer=offer, quant=quant)	
 
 
-def insert_to_cart(cart, good, quant=1):
+def insert_to_cart(cart, offer, quant=1):
 
-	CartItem.objects.filter(cart=cart, good=good).delete()	
-	CartItem.objects.create(cart=cart, good=good, quant=quant)
+	CartItem.objects.filter(cart=cart, offer=offer).delete()	
+	CartItem.objects.create(cart=cart, offer=offer, quant=quant)
 
 
-def del_from_cart(cart, good):
+def del_from_cart(cart, offer):
 	
 	try:
-		CartItem.objects.filter(cart=cart, good=good).delete()
+		CartItem.objects.filter(cart=cart, offer=offer).delete()
 	except:
 		pass	
 
@@ -53,7 +53,7 @@ def update_cart(request, cart):
 
 		quant = request.POST.get("quant"+str(counter), 1) 
 
-		add_to_cart(cart, get_good_by_slug(slug), quant)
+		add_to_cart(cart, get_offer_by_slug(slug), quant)
 
 		counter = counter + 1
 		slug = request.POST.get("item"+str(counter), "")
@@ -71,14 +71,14 @@ def get_cartitems(cart):
 	if records:
 		for item in records:
 			
-			good = item.good
+			offer = item.offer
 			quant = item.quant
 
 			items.append({
-				'good'	: 	good,
+				'offer'	: 	offer,
 				'quant'	: 	quant,
-				'price'	: 	good.price,
-				'sum'	: 	round(good.price * quant, 2),				
+				'price'	: 	offer.get_sum(),
+				'sum'	: 	round(offer.get_sum() * quant, 2),				
 				})
 
 	return items

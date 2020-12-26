@@ -21,8 +21,8 @@
    <div class="container">
      <div class="row mb-3 pl-2 productmb0">
        <div class="col-md-5 pl-0">
-         <div class="flexslider flexslider1">
-           <ul class="slides">
+         <div class="flexslider flexslider1">        
+           <ul class="slides">            
              <li data-thumb="{% static 'images/pr1t.png' %}">
                <a href="{% static 'images/pr1.png' %}" data-lightbox="example-set">
                  <img src="{% static 'images/pr1.png' %}" alt=".">
@@ -38,7 +38,7 @@
                  <img src="{% static 'images/pr1.png' %}" alt=".">
                </a> 
              </li>
-           </ul>
+           </ul>           
          </div> 
        </div> 
        <div class="col-md-7">
@@ -48,7 +48,7 @@
            <div class="product featured-product">
 
              <h3 class="mb-1">{{ item.price }} {% if item.old_price != 0 %}<span class="price">{{ item.old_price }}</span>{% endif %}</h3>
-             <p class="mb-0 mobile16">Nullam neque massa, congue nec placerat in, ultricies ut purus. Nulla facilisi. Vivamus viverra facilisis dolor, nec faucibus justo varius vitae. Phasellus sagittis urna eget justo dictum tincidunt.</p>
+             <p class="mb-0 mobile16">{{ item.description }}</p>
              <p class="mb-1half"><span class="gram">Вес: {{ item.weight }}</span></p>
            </div>
            <form action="{% url 'add_to_cart' slug=item.slug %}" method="post">
@@ -78,7 +78,7 @@
               <h3 class="mb-1">{{ additive.price }}</h3>
             </div>
             <div class="col-sm col-12 pt-1">
-              <input type="hidden" name="item{{ forloop.counter }}" value="{{ additive.slug }}"><h3 class="pricetitle1">{{ additive.name }}</h3>
+              <input type="hidden" name="additive{{ forloop.counter }}" value="{{ additive.slug }}"><h3 class="pricetitle1">{{ additive.name }}</h3>
             </div>
             </div>          
             {% endfor %}
@@ -86,39 +86,7 @@
          </div>          
        </div> 
      </div>  
-     <div class="row mb-3">
-       <div class="col-12" id="tabs">      
-         <nav>
-				   <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-					    <a class="nav-item nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" role="tab" aria-controls="nav-description" aria-selected="true">ОПИСАНИЕ</a>						  
-						  <a class="nav-item nav-link" id="nav-add-tab" data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="false">ДОПОЛНИТЕЛЬНО</a>
-					 </div>
-				 </nav>
-				 <div class="tab-content">
-					 <div class="tab-pane fade show active" id="nav-description" role="tabpanel">
-						 <div class="row">
-               <div class="col-md-10 offset-md-1">
-                 <p>Curabitur finibus ante vitae fringilla varius. Quisque porta mattis mauris eu auctor. Duis varius non lorem a pulvinar. Vivamus cursus felis pellentesque lectus gravida hendrerit. Cras commodo vestibulum magna a dictum. Vivamus eget aliquet ipsum. Suspendisse scelerisque a est quis molestie. In congue eget nibh et accumsan. Maecenas mattis erat a luctus hendrerit. Vivamus et viverra felis, vitae tempor leo.</p>
-					       <ul class="tabsul">
-                   <li>Weight:	<span>345g</span> </li>
-                   <li>Ingridients:	<span>Duis vitae justo tempor, vulputate libero sit amet, lacinia nulla. Fusce eu turpis quis </span> </li>
-                 </ul>
-                 <p>Aenean efficitur mauris ex, id rhoncus sapien eleifend eget. Aliquam sit amet ultrices metus. Etiam at purus nulla. Morbi ut mauris eros. Sed augue diam, lacinia in dictum id, fermentum consequat nunc. Nam elementum arcu ipsum, id sodales ante vehicula ac. Donec interdum ornare blandit. Aliquam erat volutpat.</p>
-               </div>
-             </div>
-           </div>
-					 
-			     <div class="tab-pane fade" id="nav-add" role="tabpanel">
-			     <div class="row">
-             <div class="col-md-10 offset-md-1">
-             Curabitur finibus ante vitae fringilla varius. Quisque porta mattis mauris eu auctor. Duis varius non lorem a pulvinar. Vivamus cursus felis pellentesque lectus gravida hendrerit. Cras commodo vestibulum magna a dictum. Vivamus eget aliquet ipsum. Suspendisse scelerisque a est quis molestie. In congue eget nibh et accumsan. Maecenas mattis erat a luctus hendrerit. Vivamus et viverra felis, vitae tempor leo.
-			       Curabitur finibus ante vitae fringilla varius. Quisque porta mattis mauris eu auctor. Duis varius non lorem a pulvinar. Vivamus cursus felis pellentesque lectus gravida hendrerit. Cras commodo vestibulum magna a dictum. Vivamus eget aliquet ipsum. Suspendisse scelerisque a est quis molestie. In congue eget nibh et accumsan. Maecenas mattis erat a luctus hendrerit. Vivamus et viverra felis, vitae tempor leo.
-             </div>
-           </div>
-         </div>
-		     </div>
-       </div> 
-      </div>  
+       
       <!-- Products --> 
       <div class="row products mb-3 custom-gutters1">
         <div class="col-12 mb-1 text-center">

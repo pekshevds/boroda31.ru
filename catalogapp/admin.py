@@ -21,6 +21,16 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+class OfferAdmin(admin.ModelAdmin):
+    list_display = (
+        'good',
+        'slug',
+
+    )
+
+    search_fields = ('name',)
+
+
 class GoodAdmin(admin.ModelAdmin):
     list_display = (
         'name',
@@ -44,4 +54,4 @@ class GoodAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Good, GoodAdmin)
-admin.site.register(Offer)
+admin.site.register(Offer, OfferAdmin)

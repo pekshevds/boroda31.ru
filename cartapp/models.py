@@ -1,5 +1,5 @@
 from django.db import models
-from catalogapp.models import Good
+from catalogapp.models import Offer
 
 from django.contrib.auth.models import User
 
@@ -14,11 +14,11 @@ class Cart(models.Model):
 
 class CartItem(models.Model):
 	cart = models.ForeignKey(Cart, verbose_name="Корзина", on_delete=models.CASCADE)
-	good = models.ForeignKey(Good, verbose_name="Товар", on_delete=models.PROTECT)
+	offer = models.ForeignKey(Offer, verbose_name="Предложение", on_delete=models.PROTECT, null=True,)
 	quant = models.DecimalField(verbose_name='Количество', default=1, max_digits=15, decimal_places=0)
     
 	def __str__(self):
-		return self.good.name
+		return self.offer.good.name
 
 	class Meta:
 		verbose_name = 'Элементы корзины'
