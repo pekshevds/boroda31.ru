@@ -21,6 +21,8 @@
  <div class="container overflow-hidden-small">
    <div class="row p-0">
 	   <div class="col-lg-12 p-0">
+      <form action="{% url 'update_cart' %}" method="post">
+        {% csrf_token %}
 			<table class="table table-responsive-md">
 		    <thead>
 				  <tr>
@@ -30,7 +32,8 @@
 					  <th>Subtotal</th>
 					  <th class="text-right"></th>
 				  </tr>
-				</thead>        
+				</thead> 
+        <form action="{% url 'update_cart' %}" method="post">
         {% for item in cart.cart_items %}         
 				<tbody>
           <tr>
@@ -49,56 +52,57 @@
               <span class="cartprice">{{ item.price }}</span> 
             </td>
 					  <td>								
+            <input type="hidden" name="item{{ forloop.counter }}" value="{{ item.good.slug }}">
             <div class="counteritem">              
-                <a href="{% url 'minus_from_cart' slug=item.good.slug %}" class="sc-minus">-</a>
-                <input type="text" name="quant" value="{{ item.quant }}">
-                <a href="{% url 'plus_to_cart' slug=item.good.slug %}" class="sc-plus">+</a>
-              </form>                              
+                <a href="#" class="sc-minus">-</a>
+                <input type="text" name="quant{{ forloop.counter }}" value="{{ item.quant }}">
+                <a href="#" class="sc-plus">+</a>              
             </div>
 					  </td>
 						<td>
               <span class="cartprice2">{{ item.sum }}</span>
             </td>
 					  <td class="text-right">
-							<button><img src="{% static 'images/close2.png' %}" alt="close"/></button>								
+							<a href="{% url 'del_from_cart' slug=item.good.slug %}"><img src="{% static 'images/close2.png' %}" alt="close"/></a>
 						</td>
 				  </tr>				  
 				</tbody>
         {% endfor %}
+        
 			</table>
       <div class="row mb-2">
         <div class="col text-right">
-          <a href="{% url 'clear_cart' %}" class="custom-button3 mr-4 mb-1">Clear Cart</a>		
-				  <a href="#" class="custom-button1 ml-5">Update Cart</a>  
+          <a href="{% url 'clear_cart' %}" class="custom-button3 mr-4 mb-1">ОЧИСТИТЬ</a>		
+				  <button type="submit" class="custom-button1 ml-5">ПЕРЕСЧИТАТЬ</button>
+          <!-- <a href="#" class="custom-button1 ml-5">ПЕРЕСЧИТАТЬ</a>   -->
 				</div>
       </div>
+      </form>
       </div>
     </div>
     <div class="row cart-subtotal pb-2">
       <div class="col-md-5 mb-2">
-        <h4>COUPON DISCOUNT</h4> 
+        <h4>ПРОМОКОД</h4> 
         <div class="cart-subtotal-input">
-          <input class="form-control" type="text" placeholder="Enter your code here">
-          <input type="submit" value="Submit">
+          <input class="form-control" type="text" placeholder="Введите Ваш промокод здесь">
+          <input type="submit" value="Отправить">
         </div> 
       </div> 
       <div class="col-md-1">
       </div>      
       <div class="col-md-6">
-        <h4>SHIPPING</h4> 
-        <input type="text" class="form-control" placeholder="Vietnam">
-        <input type="text" class="form-control" placeholder="State/City">
-        <input type="text" class="form-control" placeholder="ZIP">
+        <h4>КОНТАКТНЫЕ ДАННЫЕ</h4> 
+        <input type="text" class="form-control" placeholder="Номер телефона">        
         <div class="row">
           <div class="col-12 mt-1 mb-3 text-right">
-            <a href="#" class="custom-button2">Buy now</a>  
+            <a href="#" class="custom-button2">Заказать</a>  
           </div>
         </div>
         <div class="row">
           <div class="col-sm-5">
           </div>
           <div class="cart-subtotal-inner col-sm-7">
-            <h5>К ОПЛАТЕ<span>$38</span></h5>            
+            <h5>К ОПЛАТЕ<span>{{ cart.cart_sum }}</span></h5>            
           </div>
         </div> 
       </div>  

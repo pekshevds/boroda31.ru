@@ -6,6 +6,7 @@ from .core import get_category_by_slug
 from .core import get_good_by_slug
 from .core import get_category_goods
 from .core import get_recommendations
+from .core import get_good_additive
 
 
 def show_list(request, slug):
@@ -23,6 +24,6 @@ def show_item(request, slug):
 	context=get_context(request)	
 	context['item'] = get_good_by_slug(slug)
 	context['recommendations'] = get_recommendations()
-
+	context['additives'] = get_good_additive(context['item'])	
 
 	return render(request, 'catalogapp/item.html', context)

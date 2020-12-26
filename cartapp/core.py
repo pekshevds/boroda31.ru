@@ -3,6 +3,7 @@ from .models import CartItem
 
 
 from catalogapp.models import Good
+from catalogapp.core import get_good_by_slug
 
 
 from decimal import Decimal
@@ -31,8 +32,7 @@ def del_from_cart(cart, good):
 	try:
 		CartItem.objects.filter(cart=cart, good=good).delete()
 	except:
-		return False
-	return True
+		pass	
 
 
 def clear_cart(cart):
@@ -40,8 +40,24 @@ def clear_cart(cart):
 	try:
 		CartItem.objects.filter(cart=cart).delete()
 	except:
-		return False
-	return True
+		pass	
+
+
+def update_cart(request, cart):
+	
+	clear_cart(cart)
+
+	counter = 1
+	slug = request.POST.get("item"+str(counter), "")
+	while slug != "":
+
+		quant = request.POST.get("quant"+str(counter), 1) 
+
+		add_to_cart(cart, get_good_by_slug(slug), quant)
+
+		counter = counter + 1
+		slug = request.POST.get("item"+str(counter), "")
+
 	
 
 def get_cartitems(cart):

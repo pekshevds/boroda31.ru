@@ -4,6 +4,7 @@ from django import forms
 from .models import Good
 from .models import Category
 from .models import Picture
+from .models import Offer
 # Register your models here.
 
 class PictureInline(admin.TabularInline):
@@ -33,7 +34,7 @@ class GoodAdmin(admin.ModelAdmin):
         'price',
     )
 
-    inlines = [PictureInline,]
+    inlines = [PictureInline, ]
 
     list_filter = ( 'category', 'is_sale', 'is_new', 'is_hot', 'is_service', 'is_show',)
 
@@ -43,3 +44,4 @@ class GoodAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Good, GoodAdmin)
+admin.site.register(Offer)

@@ -53,9 +53,9 @@ class Good(models.Model):
     is_new = models.BooleanField(verbose_name="Новинка", default=False)
     is_hot = models.BooleanField(verbose_name="Спецпредложение", default=False)
     is_service = models.BooleanField(verbose_name="Услуга", default=False)
-    is_show = models.BooleanField(verbose_name="Виден для пользователей", default=False)
+    is_show = models.BooleanField(verbose_name="Доступен в меню", default=False)
 
-    category = models.ForeignKey('Category', verbose_name="Категория", on_delete=models.PROTECT, blank=True, null=True)
+    category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.PROTECT, blank=True, null=True)
 
     price = models.DecimalField(verbose_name='Цена', default=0, max_digits=15, decimal_places=2, blank=True)
     old_price = models.DecimalField(verbose_name='Старая цена', default=0, max_digits=15, decimal_places=2, blank=True)
@@ -69,6 +69,12 @@ class Good(models.Model):
     weight = models.DecimalField(verbose_name='Вес, кг', default=0, max_digits=15, decimal_places=3)
     volume = models.DecimalField(verbose_name='Объем, м3', default=0, max_digits=15, decimal_places=5)
 
+    additive1 = models.ForeignKey('self', verbose_name="Добавка 1", related_name="good_additive1", on_delete=models.PROTECT, blank=True, null=True)
+    additive2 = models.ForeignKey('self', verbose_name="Добавка 2", related_name="good_additive2", on_delete=models.PROTECT, blank=True, null=True)
+    additive3 = models.ForeignKey('self', verbose_name="Добавка 3", related_name="good_additive3", on_delete=models.PROTECT, blank=True, null=True)
+    additive4 = models.ForeignKey('self', verbose_name="Добавка 4", related_name="good_additive4", on_delete=models.PROTECT, blank=True, null=True)
+    additive5 = models.ForeignKey('self', verbose_name="Добавка 5", related_name="good_additive5", on_delete=models.PROTECT, blank=True, null=True)
+    
 
     def __str__(self):
         return self.name
@@ -94,6 +100,97 @@ class Good(models.Model):
     class Meta:
         verbose_name = 'Номенклатура'
         verbose_name_plural = 'Номенклатура'
+
+
+def add_name(name, additive, postfix=""):
+    if additive:
+        if name != "":
+            name = name + "-" + (additive.name + "_" + postfix)
+        else:
+            name = name + (additive.name + "_" + postfix)
+
+    return name
+
+
+def add_slug(slug, additive, postfix=""):
+    if additive:
+        if slug != "":
+            slug = slug + "-" + (additive.slug + "_" + postfix)
+        else:
+            slug = slug + (additive.slug + "_" + postfix)
+
+    return slug
+
+class Offer(models.Model):
+    slug = models.SlugField(max_length=1600, verbose_name='Url', blank=True, db_index=True, unique=True)
+
+    good = models.ForeignKey(Good, verbose_name='Номенклатура', related_name="offer_good", on_delete=models.PROTECT)
+
+    additive1 = models.ForeignKey(Good, verbose_name="Добавка 1", related_name="offer_additive1", on_delete=models.PROTECT, blank=True, null=True)
+    quant1 = models.DecimalField(verbose_name='Количество 1', default=0, max_digits=15, decimal_places=0)
+    additive2 = models.ForeignKey(Good, verbose_name="Добавка 2", related_name="offer_additive2", on_delete=models.PROTECT, blank=True, null=True)
+    quant2 = models.DecimalField(verbose_name='Количество 2', default=0, max_digits=15, decimal_places=0)
+    additive3 = models.ForeignKey(Good, verbose_name="Добавка 3", related_name="offer_additive3", on_delete=models.PROTECT, blank=True, null=True)
+    quant3 = models.DecimalField(verbose_name='Количество 3', default=0, max_digits=15, decimal_places=0)
+    additive4 = models.ForeignKey(Good, verbose_name="Добавка 4", related_name="offer_additive4", on_delete=models.PROTECT, blank=True, null=True)
+    quant4 = models.DecimalField(verbose_name='Количество 4', default=0, max_digits=15, decimal_places=0)
+    additive5 = models.ForeignKey(Good, verbose_name="Добавка 5", related_name="offer_additive5", on_delete=models.PROTECT, blank=True, null=True)
+    quant5 = models.DecimalField(verbose_name='Количество 5', default=0, max_digits=15, decimal_places=0)
+
+
+    def __str__(self):
+        
+        name = ""
+
+        name = add_name(name, self.good, str(1))
+        name = add_name(name, self.additive1, str(self.quant1))
+        name = add_name(name, self.additive2, str(self.quant2))
+        name = add_name(name, self.additive3, str(self.quant3))
+        name = add_name(name, self.additive4, str(self.quant4))
+        name = add_name(name, self.additive5, str(self.quant5))  
+        
+        return name
+
+
+    def save(self, *args, **kwargs):
+            
+        slug = ""
+
+        slug = add_slug(slug, self.good, str(1))
+        slug = add_slug(slug, self.additive1, str(self.quant1))
+        slug = add_slug(slug, self.additive2, str(self.quant2))
+        slug = add_slug(slug, self.additive3, str(self.quant3))
+        slug = add_slug(slug, self.additive4, str(self.quant4))
+        slug = add_slug(slug, self.additive5, str(self.quant5))
+        
+        self.slug = slug
+        super(Offer, self).save(*args, **kwargs)
+
+
+    def get_sum(self):
+        sum = 0
+
+        if self.additive1:
+            sum = sum + (self.additive1.price * self.quant1)
+
+        if self.additive2:
+            sum = sum + (self.additive2.price * self.quant2)
+
+        if self.additive3:
+            sum = sum + (self.additive3.price * self.quant3)
+
+        if self.additive4:
+            sum = sum + (self.additive4.price * self.quant4)
+
+        if self.additive5:
+            sum = sum + (self.additive5.price * self.quant5)
+
+        return sum
+
+    class Meta:
+
+        verbose_name = 'Предложение'
+        verbose_name_plural = 'Предложения'
 
 
 class Picture(models.Model):

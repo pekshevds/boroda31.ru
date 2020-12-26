@@ -11,6 +11,7 @@ class Cart(models.Model):
 		verbose_name = 'Корзина'
 		verbose_name_plural = 'Корзина'	
 
+
 class CartItem(models.Model):
 	cart = models.ForeignKey(Cart, verbose_name="Корзина", on_delete=models.CASCADE)
 	good = models.ForeignKey(Good, verbose_name="Товар", on_delete=models.PROTECT)

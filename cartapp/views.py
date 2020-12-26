@@ -11,6 +11,7 @@ from .core import add_to_cart
 from .core import insert_to_cart
 from .core import del_from_cart
 from .core import clear_cart
+from .core import update_cart
 
 from decimal import Decimal
 
@@ -54,10 +55,19 @@ def del_good_from_cart(request, slug):
 
 	return redirect(request.META['HTTP_REFERER'])
 
+
 def clear_current_cart(request):
 	
 	cart = get_cart(request)
 	clear_cart(cart['cart'])		
+
+	return redirect(request.META['HTTP_REFERER'])
+
+
+def update_current_cart(request):
+	
+	cart = get_cart(request)
+	update_cart(request, cart['cart'])		
 
 	return redirect(request.META['HTTP_REFERER'])
 
