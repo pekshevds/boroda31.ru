@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from boroda31.core import get_context
-
-from django.shortcuts import render
 from django.shortcuts import redirect
+
+from boroda31.core import get_context
 
 from catalogapp.core import get_good_by_slug
 from catalogapp.core import find_good_by_slug

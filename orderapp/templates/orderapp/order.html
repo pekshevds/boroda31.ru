@@ -1,0 +1,97 @@
+{% extends 'baseapp/index.html' %}
+{% load static %}
+
+{% block body %}
+
+<header>
+  <div class="josh-js cart-title cart-title2">
+    <div class="container">
+      <div class="row custom-gutters1">
+        <div class="col-lg-1 col-2">
+          <div class="bread-crumb mb-1">
+            <a href="{% url 'show_index' %}">ДОМОЙ</a>
+          </div>           
+        </div>
+        <div class="col-lg-10 col-10">
+          <h1>Заказ №{{ order }}</h1>
+          
+        </div>
+
+        <div class="col-lg-1 col-10">
+        {% if user.is_authenticated %}         
+            <a href="{% url 'set_is_sale' id=order.id %}" class="custom-button1 ml-5">ПОДТВЕРДИТЬ</a>          
+          {% endif %}
+        </div>
+        
+      </div>
+    </div>    
+  </div>   
+</header>
+<main>
+ <div class="container overflow-hidden-small">
+   <div class="row p-0">
+
+        <div class="col-md-8">
+          <h4 class="pricetitle1">Наименование</h4>
+        </div>
+        <div class="col-md-1">
+          <h4 class="pricetitle1">Цена</h4>
+        </div>
+        <div class="col-md-1">
+          <h4 class="pricetitle1">Кол-во</h4>
+        </div>
+        <div class="col-md-1">
+          <h4 class="pricetitle1">Скидка</h4>
+        </div>
+        <div class="col-md-1">
+          <h4 class="pricetitle1">Сумма</h4>
+        </div>
+  </div>
+   {% for item in order.get_order_items %}
+  <div class="row p-0">
+    <div class="col-md-8">
+          <div class="row align-items-center">
+              <div class="col-3 pr-0">
+                {% if item.offer.good.main_picture_is_exist %}             
+                <img src="{{ item.offer.good.get_main_picture.image.url }}" alt="..."/>
+
+                {% else %}
+                <img src="{% static 'images/product-image.png' %}" alt="..."/>
+                {% endif %}                   
+              </div>
+              <div class="col-9 pl-1">
+               <h2>{{ item.offer.good.name }}</h2>
+               <span class="gram">{{ item.offer }}</span>                 
+             </div>
+           </div>
+        </div>
+        <div class="col-md-1">
+          <h4 class="pricetitle">{{ item.price }}</h4>
+        </div>
+        <div class="col-md-1">
+          <h4 class="pricetitle">{{ item.quant }}</h4>
+        </div>
+        <div class="col-md-1">
+          <h4 class="pricetitle">{{ item.discount }}</h4>
+        </div>
+        <div class="col-md-1">
+          <h4 class="pricetitle">{{ item.total }}</h4>
+        </div>
+  </div>
+  {% endfor %}
+ 
+<div class="row cart-subtotal pb-2">
+  <div class="col-md-1 mb-2">
+
+  </div> 
+  <div class="col-md-1">
+    
+  </div>      
+  <div class="col-md-10"> 
+    <h1>Заказ на сумму: {{ order.total }} руб</h1>
+  </div>  
+</div>
+</div>
+</main>
+
+{% endblock %}

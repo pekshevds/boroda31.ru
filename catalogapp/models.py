@@ -97,6 +97,33 @@ class Good(models.Model):
 
         super(Good, self).save(*args, **kwargs)
 
+
+    def get_main_picture(self):
+    
+        try:
+            picture = Picture.objects.get(good=self, is_main=True)
+        except:
+            picture = None
+        return picture
+
+
+    def main_picture_is_exist(self):
+    
+        try:
+            picture = Picture.objects.get(good=self, is_main=True)
+        except:
+            return False
+        return True
+
+
+    def get_pictures(self):
+    
+        pictures = Picture.objects.filter(good=self)[:3]
+        if pictures:
+            return pictures
+        return None
+
+
     class Meta:
         verbose_name = 'Номенклатура'
         verbose_name_plural = 'Номенклатура'

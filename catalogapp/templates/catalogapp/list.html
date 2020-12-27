@@ -26,7 +26,12 @@
 					<div data-josh-anim-name="fadeIn" class="josh-js image-wrapper">
 						<a href="{% url 'show_item' slug=item.slug %}">
 							{% if item.discount != 0 %}<h6 class="label">-{{ item.discount }}%</h6>{% endif %}
+
+							{% if item.main_picture_is_exist %}							
+							<img class="p-image" src="{{ item.get_main_picture.image.url }}" alt="#">
+							{% else %}
 							<img class="p-image" src="{% static 'images/product1b.png' %}" alt="#">
+							{% endif %}
 						</a>
 					</div>   
 					<h3 class="pricetitle1">{{ item.name }}</h3>

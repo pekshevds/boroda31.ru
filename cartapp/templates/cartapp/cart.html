@@ -40,7 +40,12 @@
 					  <td>
 					    <div class="row align-items-center">
 								<div class="col-3 pr-0">
-									 <img src="{% static 'images/product-image.png' %}" alt="..."/>
+									 {% if item.offer.good.main_picture_is_exist %}             
+              <img src="{{ item.offer.good.get_main_picture.image.url }}" alt="..."/>
+              
+              {% else %}
+              <img src="{% static 'images/product-image.png' %}" alt="..."/>
+              {% endif %}                   
 								</div>
 							  <div class="col-9 pl-1">
 									<h4>{{ item.offer.good.name }}</h4>
@@ -91,13 +96,16 @@
       <div class="col-md-1">
       </div>      
       <div class="col-md-6">
-        <h4>КОНТАКТНЫЕ ДАННЫЕ</h4> 
-        <input type="text" class="form-control" placeholder="Номер телефона">        
+        <h4>КОНТАКТНЫЕ ДАННЫЕ</h4>
+        <form action="{% url 'create_order' %}" method="post"> 
+        {% csrf_token %}
+        <input type="text" class="form-control" name="customer" placeholder="Номер телефона">        
         <div class="row">
           <div class="col-12 mt-1 mb-3 text-right">
             <button type="submit" class="custom-button1 ml-5">ЗАКАЗАТЬ</button>  
           </div>
         </div>
+        </form>
         <div class="row">
           <div class="col-sm-5">
           </div>

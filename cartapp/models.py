@@ -7,6 +7,34 @@ from django.contrib.auth.models import User
 class Cart(models.Model):
 	user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.PROTECT, null=True, blank=True)
 	
+	def get_cart_items(self):
+		items = CartItem.objects.filter(order=self)
+		if items:
+			return items
+		return None
+
+
+	def get_cart_items(self):
+		items = CartItem.objects.filter(cart=self)
+		if items:
+			return items
+		return None
+
+
+	def get_items_count(self):
+		items = get_cart_items(self)
+		if items:
+			return len(items)
+		return 0
+
+
+	def clear_cart(self):	
+		try:
+			CartItem.objects.filter(cart=self).delete()
+		except:
+			pass
+
+
 	class Meta:
 		verbose_name = 'Корзина'
 		verbose_name_plural = 'Корзина'	

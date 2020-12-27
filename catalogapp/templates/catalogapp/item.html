@@ -22,22 +22,14 @@
      <div class="row mb-3 pl-2 productmb0">
        <div class="col-md-5 pl-0">
          <div class="flexslider flexslider1">        
-           <ul class="slides">            
-             <li data-thumb="{% static 'images/pr1t.png' %}">
-               <a href="{% static 'images/pr1.png' %}" data-lightbox="example-set">
-                 <img src="{% static 'images/pr1.png' %}" alt=".">
+           <ul class="slides">
+           {% for picture in item.get_pictures %}            
+             <li data-thumb="{{ picture.image.url }}">
+               <a href="{{ picture.image.url }}" data-lightbox="example-set">
+                 <img src="{{ picture.image.url }}" alt=".">
                </a> 
              </li>
-             <li data-thumb="{% static 'images/pr1t.png' %}">
-               <a href="{% static 'images/pr1.png' %}" data-lightbox="example-set">
-                 <img src="{% static 'images/pr1.png' %}" alt=".">
-               </a> 
-             </li>
-             <li data-thumb="{% static 'images/pr1t.png' %}">
-               <a href="{% static 'images/pr1.png' %}" data-lightbox="example-set">
-                 <img src="{% static 'images/pr1.png' %}" alt=".">
-               </a> 
-             </li>
+             {% endfor %}
            </ul>           
          </div> 
        </div> 
@@ -99,7 +91,11 @@
             <div class="image-wrapper">
               <a href="{% url 'show_item' slug=recommendation.slug %}">
                 {% if recommendation.discount != 0 %}<h6 class="label">-{{ recommendation.discount }}%</h6>{% endif %}
-                <img class="p-image" src="{% static 'images/product1.png' %}" alt=".">
+                {% if recommendation.main_picture_is_exist %}             
+              <img class="p-image" src="{{ recommendation.get_main_picture.image.url }}" alt="#">
+              {% else %}
+              <img class="p-image" src="{% static 'images/product1b.png' %}" alt="#">
+              {% endif %}
               </a>
             </div>   
             <h3 class="pricetitle1">{{ recommendation.name }}</h3> 

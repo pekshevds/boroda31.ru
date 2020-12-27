@@ -1,6 +1,7 @@
 from .models import Category
 from .models import Good
 from .models import Offer
+from .models import Picture
 
 import random
 

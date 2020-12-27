@@ -1,0 +1,62 @@
+{% extends 'baseapp/index.html' %}
+{% load static %}
+
+{% block body %}
+
+<header>
+  <div class="josh-js cart-title cart-title2">
+    <div class="container">
+      <div class="row custom-gutters1">
+        <div class="col-lg-6 col-12">
+          <div class="bread-crumb mb-1">
+            <a href="{% url 'show_index' %}">ДОМОЙ</a>
+          </div>           
+        </div>
+        <h1>Заказы</h1>
+      </div>
+    </div>    
+  </div>   
+</header>
+<main>
+ <div class="container overflow-hidden-small">
+   <div class="row p-0">
+
+        <div class="col-md-4">
+          <h4 class="pricetitle1">Заказ покупателя</h4>
+        </div>
+        <div class="col-md-2">
+          <h4 class="pricetitle1">Покупатель</h4>
+        </div>
+        <div class="col-md-2">
+          <h4 class="pricetitle1">Приготовить к</h4>
+        </div>
+        <div class="col-md-2">
+          <h4 class="pricetitle1">Комментарий</h4>
+        </div>
+        <div class="col-md-2">
+          <h4 class="pricetitle1">Сумма</h4>
+        </div>        
+  </div>
+   {% for order in orders %}
+  <div class="row p-0">
+        <div class="col-md-4">
+          <a href="{% url 'show_order' id=order.id %}"><h4 class="pricetitle">{{ order }}</h4></a>
+        </div>
+        <div class="col-md-2">
+          <h4 class="pricetitle">{{ order.customer }}</h4>
+        </div>
+        <div class="col-md-2">
+          <h4 class="pricetitle">{{ order.сook_by }}</h4>
+        </div>
+        <div class="col-md-2">
+          <h4 class="pricetitle">{{ order.comment }}</h4>
+        </div>
+        <div class="col-md-2">
+          <h4 class="pricetitle">{{ order.total }}</h4>
+        </div>
+  </div>
+  {% endfor %}
+</div>
+</main>
+
+{% endblock %}
