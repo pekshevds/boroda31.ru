@@ -58,50 +58,6 @@ def update_cart(request, cart):
 		counter = counter + 1
 		slug = request.POST.get("item"+str(counter), "")
 
-	
-
-def get_cartitems(cart):
-	
-	try:
-		records = CartItem.objects.filter(cart=cart)
-	except:
-		records = None
-	
-	items = []
-	if records:
-		for item in records:
-			
-			offer = item.offer
-			quant = item.quant
-
-			items.append({
-				'offer'	: 	offer,
-				'quant'	: 	quant,
-				'price'	: 	offer.get_sum(),
-				'sum'	: 	round(offer.get_sum() * quant, 2),				
-				})
-
-	return items
-
-
-def init_cart(cart):
-
-	cart_sum = 0
-	cart_quant = 0
-	
-	items = get_cartitems(cart)
-	for item in items:
-		cart_sum = cart_sum + item['sum']
-		cart_quant = cart_quant + item['quant']
-		
-
-	return {
-		'cart'		: cart,
-		'cart_items': items,
-		'cart_sum'	: cart_sum,
-		'cart_quant': cart_quant,
-	}
-
 
 def get_cart_by_id(id):
 	try:
@@ -109,11 +65,11 @@ def get_cart_by_id(id):
 	except:
 		cart = Cart.objects.create()	
 
-	return init_cart(cart)
+	return cart
 
 
 def get_cart(request):
 	cart = get_cart_by_id(request.session.get('cart_id'))	
 
-	request.session['cart_id'] = cart['cart'].id
+	request.session['cart_id'] = cart.id
 	return cart

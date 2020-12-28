@@ -22,7 +22,7 @@ def show_order(request, id):
 
 def create_order(request):
 	
-	cart = get_cart(request)['cart']
+	cart = get_cart(request)
 	customer = request.POST.get('customer', '')
 	if customer == '' or cart.get_items_count == 0:
 		return redirect(request.META['HTTP_REFERER'])

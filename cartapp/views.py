@@ -44,7 +44,7 @@ def add_good_to_cart(request, slug):
 
 		offer = get_offer_by_key_fields(good, additive1, additive2, additive3, additive4, additive5, quant1, quant2, quant3, quant4, quant5)
 		cart = get_cart(request)
-		add_to_cart(cart['cart'], offer, quant=quant)		
+		add_to_cart(cart, offer, quant=quant)		
 
 	return redirect(request.META['HTTP_REFERER'])
 
@@ -70,7 +70,7 @@ def insert_good_to_cart(request, slug):
 
 		offer = get_offer_by_key_fields(good, additive1, additive2, additive3, additive4, additive5, quant1, quant2, quant3, quant4, quant5)
 		cart = get_cart(request)
-		insert_to_cart(cart['cart'], offer, quant=quant)		
+		insert_to_cart(cart, offer, quant=quant)		
 
 	return redirect(request.META['HTTP_REFERER'])
 	
@@ -81,7 +81,7 @@ def del_good_from_cart(request, slug):
 	if offer:
 
 		cart = get_cart(request)
-		del_from_cart(cart['cart'], offer)		
+		del_from_cart(cart, offer)		
 
 	return redirect(request.META['HTTP_REFERER'])
 
@@ -89,7 +89,7 @@ def del_good_from_cart(request, slug):
 def clear_current_cart(request):
 	
 	cart = get_cart(request)
-	clear_cart(cart['cart'])		
+	clear_cart(cart)		
 
 	return redirect(request.META['HTTP_REFERER'])
 
@@ -97,7 +97,7 @@ def clear_current_cart(request):
 def update_current_cart(request):
 	
 	cart = get_cart(request)
-	update_cart(request, cart['cart'])		
+	update_cart(request, cart)		
 
 	return redirect(request.META['HTTP_REFERER'])
 
@@ -109,7 +109,7 @@ def plus_good_to_cart(request, slug):
 	if offer:
 
 		cart = get_cart(request)
-		add_to_cart(cart['cart'], offer, quant=quant)		
+		add_to_cart(cart, offer, quant=quant)		
 
 	return redirect(request.META['HTTP_REFERER'])
 
@@ -120,6 +120,6 @@ def minus_good_from_cart(request, slug):
 	if offer:
 
 		cart = get_cart(request)
-		add_to_cart(cart['cart'], offer, quant=quant)		
+		add_to_cart(cart, offer, quant=quant)		
 
 	return redirect(request.META['HTTP_REFERER'])

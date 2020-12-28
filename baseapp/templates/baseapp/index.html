@@ -43,14 +43,14 @@
               <div class="nav-item dropdown">
                 <a href="#" data-toggle="dropdown">
                   <i class="fas fa-shopping-cart"></i>
-                  <span class="totalnumberitems">{{ cart.cart_quant }}</span>
-                  <span class="shop-icon-total">{{ cart.cart_sum }}</span>
+                  <span class="totalnumberitems">{{ cart.get_cart_quant }}</span>
+                  <span class="shop-icon-total">{{ cart.get_cart_sum }}</span>
                 </a>               
                 <div class="dropdown-menu fade-down dropdown-menu-right">
                   <div class="card">
                     <div class="card-body">
-
-                      {% for item in cart.cart_items %}
+                      {% if cart.get_cart_items %}
+                      {% for item in cart.get_cart_items %}
 
                       <div class="row justify-content-center pb-1">
                         <div class="col-4">
@@ -66,12 +66,13 @@
                           <h4 class="mb-0">{{ item.offer.good.name }}</h4> 
                           <span>{{ item.quant }}</span>
                           <span>X</span>
-                          <span>{{ item.price }}</span>
+                          <span>{{ item.get_price }}</span>
                           <span>=</span>
-                          <span>{{ item.sum }}</span>
+                          <span>{{ item.get_sum }}</span>
                         </div>
                       </div>
                       {% endfor %}
+                      {% endif %}
                       <div class="line"></div>
                       <div class="col-12 pb-1half pt-1">
                         <div class="row no-gutters">
