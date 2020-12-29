@@ -19,9 +19,9 @@ def set_order_is_sale(order):
 	order.save()	
 
 
-def put_cart_to_the_order(cart, customer):
+def put_cart_to_the_order(cart, customer, comment=''):
 	
-	order = Order.objects.create(customer=customer)
+	order = Order.objects.create(customer=customer, comment=comment)
 
 	cart_items = cart.get_cart_items()
 	for cart_item in cart_items:

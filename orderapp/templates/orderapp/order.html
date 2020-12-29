@@ -7,13 +7,13 @@
   <div class="josh-js cart-title cart-title2">
     <div class="container">
       <div class="row custom-gutters1">
-        <div class="col-lg-1 col-2">
+        <div class="col-lg-3 col-2">
           <div class="bread-crumb mb-1">
             <a href="{% url 'show_index' %}">ДОМОЙ</a>
           </div>           
         </div>
-        <div class="col-lg-10 col-10">
-          <h1>Заказ №{{ order }}</h1>
+        <div class="col-lg-8 col-10">
+          <h2>Заказ №{{ order }}</h2>
           
         </div>
 
@@ -21,6 +21,20 @@
         {% if user.is_authenticated %}         
             <a href="{% url 'set_is_sale' id=order.id %}" class="custom-button1 ml-5">ПОДТВЕРДИТЬ</a>          
           {% endif %}
+        </div>
+        
+      </div>
+      <div class="row custom-gutters1">
+        <div class="col-lg-3 col-2">
+          <div class="bread-crumb mb-1">            
+          </div>           
+        </div>
+        <div class="col-lg-8 col-10">
+          <h1>{{ order.customer }}</h1>
+          
+        </div>
+
+        <div class="col-lg-1 col-10">        
         </div>
         
       </div>

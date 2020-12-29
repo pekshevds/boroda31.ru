@@ -24,10 +24,11 @@ def create_order(request):
 	
 	cart = get_cart(request)
 	customer = request.POST.get('customer', '')
+	comment = request.POST.get('comment', '')
 	if customer == '' or cart.get_items_count == 0:
 		return redirect(request.META['HTTP_REFERER'])
 	
-	return redirect('show_order', id=put_cart_to_the_order(cart, customer))
+	return redirect('show_order', id=put_cart_to_the_order(cart, customer, comment))
 
 def show_orders(request):
 	context=get_context(request)
