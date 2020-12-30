@@ -2,9 +2,8 @@ from django.shortcuts import render
 
 from boroda31.core import get_context
 
-from .core import get_category_by_slug
+from .core import get_menu_by_slug
 from .core import get_good_by_slug
-from .core import get_category_goods
 from .core import get_recommendations
 from .core import get_good_additive
 
@@ -12,8 +11,8 @@ from .core import get_good_additive
 def show_list(request, slug):
 		
 	context=get_context(request)
-	context['category'] = get_category_by_slug(slug)
-	context['items'] = get_category_goods(context['category'])
+	context['menu'] = get_menu_by_slug(slug)
+	# context['items'] = get_category_goods(context['category'])
 
 
 	return render(request, 'catalogapp/list.html', context)

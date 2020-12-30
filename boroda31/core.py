@@ -1,9 +1,12 @@
-from catalogapp.core import get_categoryes
+from catalogapp.core import get_main_menu
 from cartapp.core import get_cart
 
 def get_context(request):
 	
 	return {
-		'categoryes': get_categoryes(),
+		'mainmenu': get_main_menu(),
 		'cart': get_cart(request),
 	}
+
+
+

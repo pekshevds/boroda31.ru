@@ -6,10 +6,12 @@ from .models import OrderItem
 
 
 class OrderItemInline(admin.TabularInline):
+
 	model = OrderItem
 	extra = 0
 
 class OrderAdmin(admin.ModelAdmin):
+
 	list_display = (		
 		'customer',
 		'id',
@@ -22,8 +24,6 @@ class OrderAdmin(admin.ModelAdmin):
 	inlines = [OrderItemInline,]
 	search_fields = ('id',)
 	list_filter = ( 'is_sale', 'customer',)
-	
-	
+
 
 admin.site.register(Order, OrderAdmin)
-# Register your models here.

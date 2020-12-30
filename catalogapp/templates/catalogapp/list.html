@@ -3,25 +3,16 @@
 
 {% block body %}
 <main>
-	<div class="container pt-5 pb-3">
+	<div class="container overflow-hidden-small">
 
-		<div class="row shoptitle-wrapper">
-			<div data-josh-anim-name="fadeInLeft" class="josh-js col-sm-6">
-				<h2 class="shoptitle">{{ category.name }}</h2>
-			</div>
-			<div class="col-sm-6">
-				<select id="price-sort2" class="form-control">                    
-					<option data-sorttype="as" value="price">По цене возр.</option>
-					<option data-sorttype="de" value="price">По цене убыв.</option>					
-				</select>
-			</div>
-		</div>
-		<div class="row grid2 products custom-gutters1 mt-1">
-			
-
-			{% for item in items %}
-
-			<div class="element-item col-md-4 col-sm-6 col-12 mb-1half text-center">         
+		{% for category in menu.get_categoryes %}
+		
+		<div class="row products mb-3 custom-gutters1">
+			<div data-josh-anim-name="fadeInLeft" class="josh-js col-12 mb-2">
+				<h3 class="maintitle">{{ category.name }}</h3> 
+			</div> 
+			{% for item in category.get_goods %}
+			<div class="col-lg-3 col-md-4 col-sm-6 text-center">
 				<div class="product featured-product">
 					<div data-josh-anim-name="fadeIn" class="josh-js image-wrapper">
 						<a href="{% url 'show_item' slug=item.slug %}">
@@ -34,18 +25,16 @@
 							{% endif %}
 						</a>
 					</div>   
-					<h3 class="pricetitle1">{{ item.name }}</h3>
-
+					<h3 class="pricetitle1">{{ item.name }}</h3> 
 					<h3 class="pricetitle">{{ item.price }}{% if item.old_price != 0 %}<span class="price">{{ item.old_price }}</span>{% endif %} </h3>					
-					<a href="{% url 'add_to_cart' slug=item.slug %}" class="custom-button2a ml-4">КУПИТЬ</a>
+					<a href="{% url 'add_to_cart' slug=item.slug %}" class="custom-button2a ml-4">В КОРЗИНУ</a>
 				</div>
 			</div>
 			{% endfor %}
-			
-		</div> 
-	</div>  
-	 
+		</div>
 
-</div>
+		 
+		{% endfor %}
+	</div>  
 </main>
 {% endblock %}

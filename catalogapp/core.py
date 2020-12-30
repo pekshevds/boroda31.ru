@@ -2,8 +2,25 @@ from .models import Category
 from .models import Good
 from .models import Offer
 from .models import Picture
+from .models import MenuItem
 
 import random
+
+
+def get_main_menu():
+
+    return MenuItem.objects.filter(parent=None, is_show=True)
+
+
+def get_menu_by_slug(slug):
+    
+    return MenuItem.objects.get(slug=slug)
+
+
+def get_menu_categoryes(menu):
+
+    return Category.objects.filter(menu=menu, is_show=True)
+
 
 def get_categoryes():
 
@@ -60,17 +77,6 @@ def get_offer_by_key_fields(good,
     return offer
 
 
-def get_category_goods(category):
-    try:
-        goods = Good.objects.filter(category=category, is_show=True)
-    except:
-        return None
-
-    if goods:        
-        return goods
-    return None
-
-
 def get_good_additive(good):
     additives = set()
 
@@ -92,17 +98,33 @@ def get_good_additive(good):
     return additives
 
 
-def get_recommendations():
-    
+def get_recommendations():    
     goods = Good.objects.filter(is_show=True)
-    
-    if len(goods) > 4:
+    if goods:
+        if len(goods) > 4:
         
-        recommendations = set()
-        while len(recommendations) < 4:
+            recommendations = set()
+            while len(recommendations) < 4:
 
-            number = random.randint(0, len(goods)-2)
-            recommendations.add(goods[number])
+                number = random.randint(0, len(goods)-2)
+                recommendations.add(goods[number])
 
-        return list(recommendations)
+            return list(recommendations)
     return None
+
+
+def get_is_sale():
+    goods = Good.objects.filter(is_show=True, is_sale=True)
+    
+    return goods
+    
+
+def get_is_new():
+    goods = Good.objects.filter(is_show=True, is_new=True)
+    
+    return goods
+
+def get_is_hot():
+    goods = Good.objects.filter(is_show=True, is_hot=True)
+    
+    return goods

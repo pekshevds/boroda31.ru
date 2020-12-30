@@ -10,8 +10,10 @@
       <div class="row">
         <div class="col-lg-6 col-12">
           <div class="bread-crumb">
-            <a href="{% url 'show_index' %}">ДОМОЙ</a> /            
+            <a href="{% url 'show_index' %}">ДОМОЙ</a>
+            {% if item.category %} /            
             <a href="{% url 'show_list' slug=item.category.slug %}"><span>{{ item.category }}</span></a>
+            {% endif %}
           </div> 
         </div>
       </div>
@@ -103,7 +105,7 @@
             </div>   
             <h3 class="pricetitle1">{{ recommendation.name }}</h3> 
             <h3 class="pricetitle">{{ recommendation.price }} {% if recommendation.old_price != 0 %}<span>{{ recommendation.old_price }}</span>{% endif %}</h3>
-            <a href="{% url 'add_to_cart' slug=recommendation.slug %}" class="custom-button2a ml-4">КУПИТЬ</a>
+            <a href="{% url 'add_to_cart' slug=recommendation.slug %}" class="custom-button2a ml-4">В КОРЗИНУ</a>
           </div>
         </div>
         {% endfor %}

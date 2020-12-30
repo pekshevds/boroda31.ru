@@ -1,10 +1,10 @@
 from django.contrib import admin
-from django import forms
 
 from .models import Good
 from .models import Category
 from .models import Picture
 from .models import Offer
+from .models import MenuItem
 # Register your models here.
 
 class PictureInline(admin.TabularInline):
@@ -15,8 +15,11 @@ class PictureInline(admin.TabularInline):
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
-        'name',        
+        'name',
+        'menu',
     )
+
+    list_filter = ( 'menu',)
 
     search_fields = ('name',)
 
@@ -52,6 +55,16 @@ class GoodAdmin(admin.ModelAdmin):
 
     readonly_fields = ('slug', )    
 
+
+class MenuItemAdmin(admin.ModelAdmin):
+
+    list_display = (        
+        'name',
+        'parent',       
+    )   
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Good, GoodAdmin)
 admin.site.register(Offer, OfferAdmin)
+admin.site.register(MenuItem, MenuItemAdmin)

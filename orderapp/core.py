@@ -1,6 +1,11 @@
 from .models import Order
 from .models import OrderItem
 
+from catalogapp.models import Offer
+
+from django.db.models import Avg, Max, Min, Count, Sum
+
+
 
 def get_order_by_id(id):
 	try:
@@ -34,3 +39,21 @@ def put_cart_to_the_order(cart, customer, comment=''):
 	order.save()
 	cart.clear_cart()
 	return order.id
+
+
+def get_most_popular():
+
+	try:
+		records = OrderItem.objects.values('offer').annotate(quant=Sum('quant')).order_by('quant')
+	except:
+		records = None
+	
+	most_popular = set()
+	if records:
+		for item in records:
+			
+			offer = Offer.objects.get(id=item['offer'])
+			if offer.good.is_show:
+				most_popular.add(offer.good)
+
+	return list(most_popular)[:4]
