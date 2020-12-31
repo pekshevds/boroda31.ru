@@ -100,7 +100,7 @@ class Good(models.Model):
             self.site_name = self.name        
 
         try:
-            self.slug = slugify(unidecode(self.site_name))  
+            self.slug = slugify(unidecode(self.site_name + ' ' + self.art))  
         except:
             pass
 

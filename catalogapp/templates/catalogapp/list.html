@@ -25,7 +25,7 @@
 							{% endif %}
 						</a>
 					</div>   
-					<h3 class="pricetitle1">{{ item.name }}</h3> 
+					<h3 class="pricetitle1">{{ item.site_name }}</h3> 
 					<h3 class="pricetitle">{{ item.price }}{% if item.old_price != 0 %}<span class="price">{{ item.old_price }}</span>{% endif %} </h3>					
 					<a href="{% url 'add_to_cart' slug=item.slug %}" class="custom-button2a ml-4">В КОРЗИНУ</a>
 				</div>
