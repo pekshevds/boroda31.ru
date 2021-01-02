@@ -92,8 +92,11 @@
 
       <div class="row mb-2">
         <div class="col text-right">
-          <a href="{% url 'clear_cart' %}" class="custom-button3 mr-4 mb-1">ОЧИСТИТЬ</a>    
+          <a href="{% url 'clear_cart' %}" class="custom-button3 mr-4 mb-1">ОЧИСТИТЬ</a> 
+
+          {% if cart.get_cart_quant != 0 %}   
           <button type="submit" class="custom-button1 ml-5">СОХРАНИТЬ</button>          
+          {% endif %}
         </div>
       </div>
     </form>
@@ -117,7 +120,9 @@
       <textarea type="text" class="form-control" name="comment" placeholder="Комментарий"></textarea>
       <div class="row">
         <div class="col-12 mt-1 mb-3 text-right">
+          {% if cart.get_cart_quant != 0 %}   
           <button type="submit" class="custom-button1 ml-5">ЗАКАЗАТЬ</button>  
+          {% endif %}          
         </div>
       </div>
     </form>

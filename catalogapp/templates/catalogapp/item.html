@@ -11,8 +11,8 @@
         <div class="col-lg-6 col-12">
           <div class="bread-crumb">
             <a href="{% url 'show_index' %}">ДОМОЙ</a>
-            {% if item.category %} /            
-            <a href="{% url 'show_list' slug=item.category.slug %}"><span>{{ item.category }}</span></a>
+            {% if item.category.menu %} /            
+            <a href="{% url 'show_list' slug=item.category.menu.slug %}"><span>{{ item.category.menu }}</span></a>
             {% endif %}
           </div> 
         </div>
