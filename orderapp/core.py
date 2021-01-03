@@ -15,14 +15,20 @@ def get_order_by_id(id):
 	return order
 
 
-def get_orders(is_sale=True):
-	return Order.objects.filter(is_sale=is_sale)
+def get_orders(is_confirmed=False, is_canceled=False):
+	return Order.objects.filter(is_confirmed=is_confirmed, is_canceled=is_canceled)
 	
 
-def set_order_is_sale(order):
+def set_order_is_confirmed(order):
 	
-	order.is_sale = True
-	order.save()	
+	order.is_confirmed = True
+	order.save()
+
+
+def set_order_is_canceled(order):
+	
+	order.is_canceled = True
+	order.save()
 
 
 def put_cart_to_the_order(cart, customer, comment=''):

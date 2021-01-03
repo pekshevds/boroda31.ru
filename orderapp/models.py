@@ -15,6 +15,8 @@ class Order(models.Model):
 	weight = models.DecimalField(verbose_name='Вес, кг', default=0, max_digits=15, decimal_places=3, blank=True)
 	volume = models.DecimalField(verbose_name='Объем, м3', default=0, max_digits=15, decimal_places=5, blank=True)
 
+	is_confirmed = models.BooleanField(verbose_name="Подтвержден", default=False)
+	is_canceled = models.BooleanField(verbose_name="Отменен", default=False)
 	is_sale = models.BooleanField(verbose_name="Подтвержден", default=False)
 
 	def __str__(self):
@@ -45,7 +47,11 @@ class Order(models.Model):
 		items = OrderItem.objects.filter(order=self)
 		if items:
 			return items
-		return None		
+		return None
+
+
+	def in_work(self):
+		return not (self.is_confirmed or self.is_canceled)
 
 
 	class Meta:
