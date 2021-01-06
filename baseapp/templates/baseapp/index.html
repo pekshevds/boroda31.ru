@@ -47,7 +47,7 @@
                   {% if user.is_authenticated %}
                   <a class="nav-link" href="{% url 'show_orders' %}">ЗАКАЗЫ</a>
                   {% else %}
-                  <a class="nav-link" href="#">КОНТАКТЫ</a>
+                  <a class="nav-link" href="{% url 'show_contacts' %}">КОНТАКТЫ</a>
                   {% endif %}
                 </li>
               </ul>
@@ -120,6 +120,23 @@
 
 
 {% block body %}
+<header>
+  <div class="josh-js cart-title cart-title2">
+    <div class="container">
+      <div class="row custom-gutters1">
+        <div class="col-lg-4 col-12">
+          <div class="bread-crumb mb-1">
+                      
+          </div>           
+        </div>
+        <div class="col-lg-8 col-12">
+          
+          
+        </div>
+      </div>
+    </div>    
+  </div>   
+</header>
 
 <div class="container overflow-hidden-small">
 
@@ -280,12 +297,9 @@
               <a href="{% url 'show_index' %}"><img class="footer-logo" src="{% static 'images/logo_footer.png' %}" alt="Burgos"></a>
             </div>
             <div class="col-lg-7 col-md-6 mb-1">
-              <h3 class="footertitle">Quick links</h3>
-              <ul class="footerul">
-                <li><a href="#">Menus</a> </li>
-                <li><a href="#">Order and delivery</a> </li>
-                <li><a href="#">Payment methods</a> </li>
-                <li><a href="#">Contacts</a> </li>
+              <h3 class="footertitle">МЫ В СОЦСЕТЯХ</h3>
+              <ul class="footerul">                                
+                <li><a href="https://vk.com/id524702155" class="fab fa-vk"></a>  В Контакте</li>                
               </ul>  
             </div>
           </div>
@@ -293,24 +307,23 @@
         <div class="col-lg-6 col-md-12">
           <div class="row no-gutters">
             <div class="col-lg-7 col-md-6 mb-1">
-              <h3 class="footertitle">Contacts</h3>
+              <h3 class="footertitle">О НАС</h3>
               <ul class="footerul">
-                <li class="footerul1">Work Time </li>
-                <li class="footerul2">Monday - Friday<br> 11:00-00:00</li>
-                <li class="footerul1">Address </li>
-                <li class="footerul2">LA, Vehicula Street, 58</li>
+                <li class="footerul1">Время работы </li>
+                <li class="footerul2">Без перерыва и выходных<br> 10:00-22:00</li>
+                <li class="footerul1">Адрес </li>
+                <li class="footerul2">Борисовка, ул. 8 Марта д. 40</li>
               </ul>  
             </div>
             <div class="col-lg-5 col-md-6 mb1">
-              <h3 class="footertitle footertitle2">Call us now</h3>
-              <h5 class="footercta">+ 123 4567 8905</h5>
-              <h5 class="footercta">+ 876 5763 3597</h5>
+              <h3 class="footertitle footertitle2">НАШИ ТЕЛЕФОНЫ</h3>
+              <h5 class="footercta">+ 7 919 228 65 05</h5>              
             </div>
           </div>
         </div>
       </div>
       <div class="col-12 text-center pt-2">
-        <p>Development by <a href="http://annasoft.ru">annasoft.ru</a>. © Burgos HTML5 Template. All rights reserved.</p>
+        <p>Разработка <a href="http://annasoft.ru">annasoft.ru</a>. Собственность <a href="{% url 'show_index' %}">boroda31.ru</a>. Все права защищены.</p>
       </div>
     </div>
     <div id="toTopBtn" class="fa fa-chevron-up button-top"></div>  

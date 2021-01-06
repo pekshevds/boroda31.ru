@@ -1,0 +1,66 @@
+{% extends 'baseapp/index.html' %}
+{% load static %}
+
+{% block body %}
+
+
+
+<main>
+ <div class="container overflow-hidden-small">
+  <div class="row custom-gutters1 align-items-center mb-2 mt-5">    
+    <div class="col-sm-9 contacts">
+      <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A580685766c54af6b5ad4a9a63693ab0fcd6eac0270776810e70e87f808ff8a79&amp;source=constructor" width="500" height="400" frameborder="0"></iframe>
+    </div> 
+    <div data-josh-anim-name="fadeInRight" class="josh-js col-sm-3">
+      <div class="zone">
+        <h3>ДОСТАВКА</h3>
+        <p>Мы доставим Ваш заказ по Борисовке бесплатно, при условии заказа более 1000 руб.</p>
+        <p><span>Бесплатная доставка</span></p>
+      </div>      
+      </div>
+    </div> 
+ </div>      
+ <div class="container overflow-hidden-small">
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-12 contact">
+       <div class="row">
+          <div class="col-3 pr-0">
+             <img src="{% static 'images/clock.svg' %}" alt=".">
+          </div>
+          <div class="col-9 pl-2">
+            <h4>Время работы</h4> 
+            <h5>Без перерыва и выходных</h5>
+            <h5>10:00-22:00</h5>
+          </div> 
+       </div> 
+     </div> 
+     <div class="col-md-4 col-sm-6 col-12 contact">
+       <div class="row">
+         <div class="col-3 pr-0">
+           <img src="{% static 'images/phone.svg' %}" alt=".">
+         </div>
+         <div class="col-9 pl-2">
+           <h4>Наши телефоны</h4> 
+           <h5>+ 7 919 228 65 05</h5>
+           <h5>+ 7 919 228 65 05</h5>
+         </div>
+         </div>
+     </div> 
+     <div class="col-md-4 col-sm-6 col-12 contact">
+        <div class="row">
+          <div class="col-3 pr-0">
+            <img src="{% static 'images/map.svg' %}" alt=".">
+          </div>
+          <div class="col-9 pl-2">
+            <h4>Мы находимся</h4> 
+            <h5>Борисовка</h5>
+            <h5>ул. 8 Марта д. 40</h5>
+          </div> 
+        </div>
+      </div> 
+    </div>
+    </div>  
+  </div>
+  </main>
+
+{% endblock %}
